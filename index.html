@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flora Fusion - Premium Home Decors</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#home" class="logo">
+                <i class="fas fa-home"></i>
+                Flora Fusion
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Decors</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search decors..." id="searchInput">
+                    <button class="search-btn" onclick="searchProducts()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <a href="javascript:void(0)" class="wishlist-icon" onclick="toggleWishlistSidebar()">
+                    <i class="fas fa-heart"></i>
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </a>
+
+                <a href="#" class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Your Space with <span class="highlight">Premium Plants</span></h1>
+                <p class="hero-description">Discover our curated collection of beautiful indoor plants and stylish
+                    planters that bring life to any room.</p>
+                <div class="hero-buttons">
+
+                    <div class="cta-buttons">
+                        <a href="#products" class="btn btn-primary">
+                            <!-- <i class="fas fa-shopping-bag"></i> -->
+                            Shop Now
+                        </a>
+                        <a href="#about" class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Plant Varieties</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10k+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.pexels.com/photos/6208086/pexels-photo-6208086.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Beautiful plants" class="hero-img">
+                <div class="floating-card card-1">
+                    <i class="fas fa-leaf"></i>
+                    <span>100% Natural</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>Free Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Flora Fusion?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+
+                    <h3>Premium Quality</h3>
+                    <p>Handpicked decor items made from the finest materials, ensuring durability and timeless beauty
+                        for your home.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and secure shipping nationwide. Get your favorite decor pieces delivered right to your
+                        doorstep.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Expert Support</h3>
+                    <p>Our interior design experts are here to help you choose the perfect decor items for your space.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="products-header">
+                <h2 class="section-title">Our Decor Collection</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                    <button class="filter-btn" onclick="filterProducts('pots')">Pots</button>
+                    <button class="filter-btn" onclick="filterProducts('hangers')">Hangers</button>
+                    <button class="filter-btn" onclick="filterProducts('vases')">Vases</button>
+                    <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+                </div>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text slide-in-left">
+                    <h2>About Flora Fusion</h2>
+                    <!-- Updated about content for decor business -->
+                    <p>At Flora Fusion, we believe that beautiful decor has the power to transform any space into a
+                        sanctuary. Our carefully curated collection features premium home decor items that blend
+                        functionality with aesthetic appeal.</p>
+                    <p>From elegant decorative pots to stylish wall hangers and unique accessories, each piece in our
+                        collection is selected for its quality, design, and ability to enhance your living environment.
+                    </p>
+                    <p>Whether you're looking to refresh a single room or redesign your entire home, Flora Fusion offers
+                        the perfect decor solutions to bring your vision to life.</p>
+                </div>
+                <div class="slide-in-right">
+                    <img src="/Images/Cactus1.jpg" alt="Beautiful home interior" class="about-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Design Street, Decor City, DC 12345</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@florafusion.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Flora Fusion</h3>
+                    <!-- Updated footer description for decor business -->
+                    <p>Your trusted partner for premium home decor solutions. Transform your space with our carefully
+                        curated collection of decorative items.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Decors</a></li>
+                        <!-- <li><a href="#categories">Categories</a></li> -->
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+
+
+                    <ul>
+
+                        <li><a href="#" onclick="navigateToCategory('pots')">Decorative Pots</a></li>
+                        <li><a href="#" onclick="navigateToCategory('hangers')">Wall Hangers</a></li>
+                        <li><a href="#" onclick="navigateToCategory('vases')">Vases</a></li>
+                        <li><a href="#" onclick="navigateToCategory('accessories')">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flora Fusion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalContent">
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" onclick="closeCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+
+        </div>
+        <div class="cart-total" id="cartTotal">
+
+        </div>
+    </div>
+    <div class="wishlist-overlay" id="wishlistOverlay" onclick="toggleWishlistSidebar()"></div>
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+        <div class="wishlist-header">
+            <h3>My Wishlist ❤️</h3>
+            <button class="wishlist-close" onclick="toggleWishlistSidebar()">&times;</button>
+        </div>
+
+        <div class="wishlist-items" id="wishlist-container">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora Fusion - Luxury Home Decors</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ====================================================
+        PREMIUM DESIGN VARIABLES ⚜️
+        - Deep Charcoal (#1E2124) for text and main elements.
+        - Soft Beige/Off-White (#F7F6F3) for backgrounds.
+        - Gold/Brass Accent (#B8860B or #C0A07B) for highlights.
+        - Refined Border/Separator (#E0E0E0).
+        ====================================================
+        */
+        :root {
+            --background: #F7F6F3;
+            /* Soft off-white / Beige */
+            --foreground: #1E2124;
+            /* Deep Charcoal for main text/elements */
+            --card: #ffffff;
+            /* Pure white for cards */
+            --card-foreground: var(--foreground);
+            --primary: #526C5F;
+            /* Deep, muted Sage Green/Grey for elegance */
+            --primary-foreground: #ffffff;
+            --secondary: #C0A07B;
+            /* Soft Gold/Brass Accent */
+            --secondary-foreground: var(--foreground);
+            --muted: #EFEBE4;
+            /* Light muted background for sections */
+            --muted-foreground: #6B7280;
+            /* Soft grey for secondary text */
+            --accent: var(--secondary);
+            --accent-foreground: var(--foreground);
+            --border: #E0E0E0;
+            /* Light, subtle border */
+            --input: #ffffff;
+            --radius: 0.25rem;
+            /* Sharper, less rounded corners */
+
+            /* Additional variables for the Hero section */
+            --text-dark: var(--foreground);
+            --text-light: var(--muted-foreground);
+            --primary-color: var(--primary);
+            --primary-dark: #3f544f;
+            --secondary-color: var(--secondary);
+            --accent-color: var(--secondary);
+            --border-radius: var(--radius);
+            --transition: all 0.3s ease;
+            --shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.05);
+            /* Softer shadow */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Changed to Lato for clean, modern readability */
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            /* Changed to Playfair Display for a classic, sophisticated header look */
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Header Styles - Refined and Minimal */
+        .header {
+            /* Use a very light, almost white background for contrast with body */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            /* Lighter border for subtlety */
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            /* Very subtle shadow */
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--foreground);
+            /* Logo is charcoal, not primary color */
+        }
+
+        .nav-menu a {
+            color: var(--foreground);
+            font-weight: 400;
+            /* Less bold */
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+            /* Hover is gold accent */
+        }
+
+        .nav-menu a::after {
+            background: var(--secondary);
+            /* Underline in gold accent */
+            height: 1px;
+            /* Thinner line */
+        }
+
+        .search-box {
+            background: var(--background);
+            /* Match body or muted color */
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            /* Fully rounded for a cleaner shape */
+        }
+
+        .search-box:focus-within {
+            border-color: var(--secondary);
+            /* Focus in gold */
+            box-shadow: 0 0 0 1px rgba(192, 160, 123, 0.5);
+            /* Subtle glow */
+        }
+
+        .search-input {
+            font-weight: 300;
+            /* Lighter font weight */
+        }
+
+        .cart-icon:hover {
+            color: var(--secondary);
+        }
+
+        .cart-count {
+            background: var(--secondary);
+            /* Gold counter */
+            color: var(--foreground);
+            /* Dark text on gold */
+            font-weight: 700;
+        }
+
+        /* Hero Section - Elevated Typography and Contrast */
+        .hero {
+            padding: 120px 0 80px;
+            /* Softer, more muted gradient */
+            background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            /* Larger for impact */
+            font-weight: 400;
+            /* Playfair Display looks better with less bold weight */
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        .highlight::after {
+            background: var(--secondary);
+            /* Accent color under the highlight */
+            height: 1px;
+            /* Thinner line */
+        }
+
+        .hero-description {
+            font-weight: 300;
+            /* Lighter font weight */
+            max-width: 80%;
+            /* Constrain width for better reading flow */
+        }
+
+        /* Button Styling - Less blocky, more elegant */
+        .btn {
+            border-radius: 0.15rem;
+            /* Sharper corners */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            /* Muted green base */
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Subtler shadow */
+        }
+
+        .btn-secondary {
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            /* Thinner border */
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stat-number {
+            color: var(--secondary);
+            /* Gold accents for stats */
+        }
+
+        .hero-img {
+            border-radius: 0.5rem;
+            /* Slight rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            /* Softer, deeper shadow */
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            /* Added blur for a sophisticated glass-like effect */
+            color: var(--primary);
+            /* Text in primary color */
+            border: 1px solid var(--border);
+            /* Subtle border */
+        }
+
+        /* Sections - Clean and Open */
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            /* Playfair display looks better un-bolded */
+            color: var(--foreground);
+            /* Dark text, primary color for subtle highlight if needed */
+        }
+
+        .feature-card,
+        .product-card,
+        .category-card {
+            background: var(--card);
+            /* Pure white background */
+            border: 1px solid var(--border);
+            /* Subtle border */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            /* Minimal starting shadow */
+        }
+
+        .feature-card:hover,
+        .product-card:hover,
+        .category-card:hover {
+            transform: translateY(-3px);
+            /* Smaller hover lift */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            /* Softer hover shadow */
+        }
+
+        .feature-icon {
+            color: var(--secondary);
+            /* Gold icon */
+        }
+
+        .feature-card h3 {
+            color: var(--foreground);
+            /* Darker headings */
+        }
+
+        /* Product Cards */
+        .products {
+            background: var(--muted);
+        }
+
+        .filter-btn {
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--muted-foreground);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--secondary);
+            color: var(--foreground);
+            border-color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .product-name {
+            color: var(--foreground);
+            /* Dark name */
+            font-weight: 400;
+            /* Less aggressive font weight */
+        }
+
+        .product-price {
+            color: var(--primary);
+            /* Primary color for price */
+        }
+
+        .product-category {
+            font-weight: 300;
+            /* Lighter weight */
+        }
+
+        .quick-view-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Footer - Sophisticated Dark Block */
+        .footer {
+            background: var(--foreground);
+            /* Deep Charcoal background */
+            color: rgba(255, 255, 255, 0.85);
+            /* Off-white text */
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary);
+            /* Gold accent for headings */
+        }
+
+        .footer-section ul li a {
+            opacity: 1;
+            /* No opacity for better readability */
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+            padding-left: 0.5rem;
+            /* Smaller, subtler hover effect */
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cart-header h3 {
+            color: var(--foreground);
+        }
+
+        .cart-total {
+            background: var(--card);
+            /* Pure white total box */
+        }
+
+        .cart-total-final {
+            color: var(--secondary);
+            /* Gold total */
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .about-image {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#home" class="logo">
+                <i class="fas fa-gem" style="color:var(--secondary);"></i>
+                Flora Fusion
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Decors</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search luxury decors..." id="searchInput">
+                    <button class="search-btn" onclick="searchProducts()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <a href="#" class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content slide-in-left fade-in">
+                <h1 class="hero-title">Elevate Your Space with <span class="highlight">Luxury Home Decors</span></h1>
+                <p class="hero-description">Discover our curated collection of **premium decorative accessories**,
+                    meticulously selected to bring timeless elegance and refined style into your home.</p>
+                <div class="hero-buttons">
+                    <div class="cta-buttons">
+                        <a href="#products" class="btn btn-primary">
+                            Shop The Collection
+                        </a>
+                        <a href="#about" class="btn btn-secondary">
+                            Discover Our Story
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Exclusive Pieces</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10k+</span>
+                        <span class="stat-label">Satisfied Clients</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Artisan</span>
+                        <span class="stat-label">Craftsmanship</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image slide-in-right fade-in">
+
+                <img src="https://images.pexels.com/photos/6208086/pexels-photo-6208086.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Luxury home decor accessories on a table" class="hero-img">
+                <div class="floating-card card-1">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium Quality</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-truck"></i>
+                    <span>White-Glove Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="features">
+        <div class="container fade-in">
+            <h2 class="section-title">Why Choose Flora Fusion?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <i class="fas fa-palette feature-icon"></i>
+                    <h3>Curated Collections</h3>
+                    <p>Hand-picked pieces from world-renowned artisans to ensure unique and sophisticated decor for your
+                        home.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="fas fa-medal feature-icon"></i>
+                    <h3>Uncompromising Quality</h3>
+                    <p>We source only the finest materials, guaranteeing longevity and a luxurious feel in every item.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="fas fa-concierge-bell feature-icon"></i>
+                    <h3>Personalized Service</h3>
+                    <p>Enjoy dedicated support and interior styling advice to perfectly complement your personal
+                        aesthetic.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="products" id="products">
+        <div class="container fade-in">
+            <div class="products-header">
+                <h2 class="section-title" style="margin: 0;">Featured Decor</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All Decors</button>
+                    <button class="filter-btn" data-category="vases">Ceramic Vases</button>
+                    <button class="filter-btn" data-category="wallart">Statement Art</button>
+                    <button class="filter-btn" data-category="sculptures">Sculptures</button>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card fade-in" data-category="vases">
+                    <img src="https://images.pexels.com/photos/17628860/pexels-photo-17628860/free-photo-of-minimalist-room-decor.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        alt="Minimalist Abstract Vase" class="product-image">
+                    <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    <div class="product-info">
+                        <span class="product-category">Ceramic Vases</span>
+                        <h3 class="product-name">Abstract Sculptural Vase</h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">(32 Reviews)</span>
+                        </div>
+                        <p class="product-price">$289.00</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-small add-to-cart">Add to Bag</button>
+                            <button class="wishlist-btn"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="wallart">
+                    <img src="https://images.pexels.com/photos/17628929/pexels-photo-17628929/free-photo-of-wall-with-frame.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        alt="Minimalist Abstract Art Print" class="product-image">
+                    <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    <div class="product-info">
+                        <span class="product-category">Statement Art</span>
+                        <h3 class="product-name">Golden Lines Canvas</h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">(18 Reviews)</span>
+                        </div>
+                        <p class="product-price">$450.00</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-small add-to-cart">Add to Bag</button>
+                            <button class="wishlist-btn"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="sculptures">
+                    <img src="https://images.pexels.com/photos/17628935/pexels-photo-17628935/free-photo-of-interior-decoration-with-vases.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        alt="Modern Metal Sculpture" class="product-image">
+                    <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    <div class="product-info">
+                        <span class="product-category">Sculptures</span>
+                        <h3 class="product-name">The Abstract Thinker</h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">(45 Reviews)</span>
+                        </div>
+                        <p class="product-price">$310.00</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-small add-to-cart">Add to Bag</button>
+                            <button class="wishlist-btn"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in" data-category="vases">
+                    <img src="https://images.pexels.com/photos/20300448/pexels-photo-20300448/free-photo-of-stylish-vase-with-plant-on-the-white-background.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        alt="Textured Stone Planter" class="product-image">
+                    <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    <div class="product-info">
+                        <span class="product-category">Ceramic Vases</span>
+                        <h3 class="product-name">Rustic Textured Planter</h3>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">(22 Reviews)</span>
+                        </div>
+                        <p class="product-price">$165.00</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-small add-to-cart">Add to Bag</button>
+                            <button class="wishlist-btn"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn btn-secondary">View All Products <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="about" id="about">
+        <div class="container fade-in">
+            <div class="about-content">
+                <div class="about-text slide-in-left">
+                    <h2>Our Philosophy: Timeless Design</h2>
+                    <p>At Flora Fusion, we believe that **decor should be an investment in enduring beauty**. We focus
+                        on classic, timeless design principles, ensuring that our pieces remain sophisticated and
+                        relevant for years to come.</p>
+                    <p>We work directly with master craftsmen and designers who share our commitment to **quality,
+                        detail, and sustainable sourcing**. Every piece tells a story of artistry and dedication, ready
+                        to be a focal point in your distinguished home.</p>
+                    <a href="#contact" class="btn btn-outline">Consult Our Stylists</a>
+                </div>
+                <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Elegant interior design" class="about-image slide-in-right">
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="contact" id="contact">
+        <div class="container fade-in">
+            <h2 class="section-title">Contact Our Concierge Service</h2>
+            <div class="contact-content">
+                <div class="contact-info slide-in-left">
+                    <h3>Get in Touch</h3>
+                    <p>We are available to answer your inquiries, provide personalized recommendations, and assist with
+                        custom orders.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Flora Fusion HQ, 101 Design Street, New York, NY 10001</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>concierge@florafusion.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(123) 456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 9:00 AM - 6:00 PM EST</span>
+                    </div>
+                </div>
+                <form class="contact-form slide-in-right">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message/Inquiry</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Flora Fusion</h3>
+                    <p>Exclusive home decors for sophisticated spaces. Crafting elegance since 2024.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Shop Decors</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#contact">Concierge Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Care</h3>
+                    <ul>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                        <a href="#" style="color: var(--secondary);"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: var(--secondary);"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" style="color: var(--secondary);"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Flora Fusion. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Shopping Bag</h3>
+            <button class="cart-close" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; padding: 2rem; color: var(--muted-foreground);">Your bag is currently empty.
+            </p>
+        </div>
+        <div class="cart-total">
+            <div class="cart-total-row">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <div class="cart-total-row cart-total-final">
+                <span>Total</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h3 style="color: var(--primary);">Quick View Details</h3>
+            <p>Product details will be dynamically loaded here.</p>
+        </div>
+    </div>
+
+
+    <div class="toast" id="toastMessage">Item added to bag!</div>
+
+    <script>
+        // Placeholder JavaScript for functionality (unchanged from typical e-commerce functions)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Header shrink on scroll
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Cart toggle functionality
+            window.toggleCart = () => {
+                document.getElementById('cartSidebar').classList.toggle('open');
+                document.querySelector('.cart-overlay').classList.toggle('open');
+            };
+
+            // Mobile menu toggle
+            window.toggleMobileMenu = () => {
+                document.getElementById('navMenu').classList.toggle('active');
+            };
+
+            // Simple search alert
+            window.searchProducts = () => {
+                const query = document.getElementById('searchInput').value.trim();
+                if (query) {
+                    alert(`Searching for "${query}"... (Placeholder function)`);
+                }
+            };
+
+            // Placeholder for filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const category = this.getAttribute('data-category');
+                    document.querySelectorAll('.product-card').forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Placeholder Add to Cart logic
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.getElementById('cartCount').textContent = parseInt(document.getElementById('cartCount').textContent) + 1;
+                    const toast = document.getElementById('toastMessage');
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                });
+            });
+
+            // Placeholder Quick View modal logic
+            const modal = document.getElementById('quickViewModal');
+            const closeBtn = document.getElementById('closeModal');
+            document.querySelectorAll('.quick-view-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    modal.style.display = 'block';
+                });
+            });
+
+            closeBtn.onclick = () => {
+                modal.style.display = 'none';
+            };
+
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+
+            // Wishlist toggle
+            document.querySelectorAll('.wishlist-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    this.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
